@@ -1,0 +1,66 @@
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: 'Microsoft YaHei';
+}
+
+input::-webkit-input-placeholder {
+    color: #aab2bd;
+    font-size: 12px;
+    text-align: left;
+}
+
+#main-content {
+    display: inline-block;
+    margin: 0 auto;
+    overflow: hidden;
+    min-width: 300pt;
+    padding: 20px;
+}
+
+input {
+    border: 1px solid lightgrey;
+    border-radius: 4pt;
+    padding: 6pt;
+    font-family: "Microsoft YaHei";
+    min-width: 120pt;
+    width: 220pt;
+    margin: 3pt auto;
+    outline: none;
+    display: inline-block;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.06);
+}
+
+input:focus {
+    border-color: lightblue;
+}
+
+button {
+    border: 1pt solid lightgrey;
+    border-radius: 4pt;
+    padding: 6pt;
+    min-width: 120pt;
+    width: 220pt;
+    margin: 3pt auto;
+    display: inline-block;
+    box-sizing: content-box;
+    outline: none;
+    cursor: pointer;
+    font-family: "Microsoft YaHei";
+    color: gray;
+}
+
+button.primary {
+    color: white;
+    border: 1pt solid #00ae1c;
+    background: #00ae1c;
+}
+
+button:focus {
+    border-color: lightblue;
+}
+
+
