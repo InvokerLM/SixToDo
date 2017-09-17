@@ -1,29 +1,33 @@
-$import("./js/pages/login.js");
+;(function ($, win,r) {
+    r.config({
+       paths:{
+           "jquery":"./js/jquery-3.2.1.min",
+           "mustache":"./js/mustache",
+           "login":"./js/pages/login",
+           "task":"./js/pages/task",
+       },
+    });
 
-;(function ($, win, mus) {
-    win.appSetting = {
-        pageSource: {
-            login: "./temPages/loginPage.html",
-            taskPage: "./temPages/taskPage.html",
-        }
-    };
-    win.initMain = function () {
-        var mainContainer = $("#main-content");
-        var bindEvents = function () {
-            $("#btn-login").click(function () {
-                alert("click login btn");
-            })
-        }
-        $.get(this.appSetting.pageSource.login, function (template) {
-            var renderPage = mus.render(template);
-            mainContainer.html(renderPage);
-            bindEvents();
-        });
-
-
-    }
-})(jQuery, window, Mustache);
+})(jQuery, window,require);
 
 $(document).ready(function () {
-    window.initMain();
+
+    require(["login","task"],function(login,task){
+        window.app={
+            router:{
+                toLogin:function(){
+                    login.init({container:$("#main-content")});
+                    login.install();
+                },
+                toTask:function(){
+                    task.init({container:$("#main-content")});
+                    task.install();
+                }
+            }
+        }
+
+        login.init({container:$("#main-content")});
+        login.install();
+    })
+
 });

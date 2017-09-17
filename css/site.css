@@ -63,4 +63,8 @@ button:focus {
     border-color: lightblue;
 }
 
+.hide{
+    display: none;
+}
+
 
