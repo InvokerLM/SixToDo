@@ -1,0 +1,16 @@
+{
+  "name": "SixToDo",
+  "version": "0.0.1",
+  "main":"index.html",
+  "description": "每天六件事",
+  "keywords": ["taskManage"],
+  "window":{
+    "title":"每天六件事",
+    "icon":"icon48.png",
+    "width":600,
+    "height":300,
+    "position":"center",
+    "resizable":true,
+    "show_in_taskbar":true
+  }
+}
