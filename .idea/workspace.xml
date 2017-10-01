@@ -2,29 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12bdb682-17de-431e-9552-63a5e324bced" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/b-logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/font/iconfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/font/iconfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/m-logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/font/iconfont.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/font/iconfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/font/iconfont.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/font/iconfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/register.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/task.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/pages/register.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/temPages/registerPage.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/icon48.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/login.css" afterPath="$PROJECT_DIR$/css/login.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/site.css" afterPath="$PROJECT_DIR$/css/site.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/pages/login.js" afterPath="$PROJECT_DIR$/js/pages/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/pages/task.js" afterPath="$PROJECT_DIR$/js/pages/task.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temPages/loginPage.html" afterPath="$PROJECT_DIR$/temPages/loginPage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temPages/taskPage.html" afterPath="$PROJECT_DIR$/temPages/taskPage.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.382241">
+    <splitter split-orientation="horizontal" split-proportion="0.6097252">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
           <file leaf-file-name="loginPage.html" pinned="false" current-in-tab="false">
@@ -53,8 +31,8 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="351">
-                  <caret line="19" column="80" lean-forward="false" selection-start-line="19" selection-start-column="80" selection-end-line="19" selection-end-column="80" />
+                <state relative-caret-position="783">
+                  <caret line="71" column="48" lean-forward="false" selection-start-line="71" selection-start-column="48" selection-end-line="71" selection-end-column="48" />
                   <folding />
                 </state>
               </provider>
@@ -250,8 +228,8 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/css/site.css" />
         <option value="$PROJECT_DIR$/js/pages/login.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/pages/task.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -268,9 +246,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="-390" />
-    <option name="y" value="271" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
     <option name="width" value="2807" />
     <option name="height" value="1448" />
   </component>
@@ -362,18 +340,17 @@
       <workItem from="1505651514446" duration="10265000" />
       <workItem from="1505910480729" duration="77970000" />
       <workItem from="1506829054706" duration="698000" />
-      <workItem from="1506833112526" duration="599000" />
+      <workItem from="1506833112526" duration="1249000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142168000" />
+    <option name="totallyTimeSpent" value="142818000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-390" y="271" width="2807" height="1448" extended-state="1" />
-    <editor active="true" />
+    <frame x="-11" y="-11" width="2902" height="1762" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18491921" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17881945" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1816056" sideWeight="0.5102334" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1816056" sideWeight="0.4897666" order="1" side_tool="false" content_ui="tabs" />
@@ -787,14 +764,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="19" column="80" lean-forward="false" selection-start-line="19" selection-start-column="80" selection-end-line="19" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/pages/task.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="601">
@@ -821,6 +790,14 @@
             <marker date="1506832175182" expanded="true" signature="13334:13409" ph="..." />
             <marker date="1506832175182" expanded="true" signature="13440:13452" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="71" column="48" lean-forward="false" selection-start-line="71" selection-start-column="48" selection-end-line="71" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>

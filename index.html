@@ -17,7 +17,7 @@
 <div id="app-dragBar">
     <div id="icon-dragBar"></div>
     <div id="tool-dragBar">
-        <i id="mini" class="icon iconfont icon-zuixiaohuachuangkou" title="12122"></i>
+        <i id="mini" class="icon iconfont icon-zuixiaohuachuangkou"></i>
         <i id="menu" class="icon iconfont icon-caidan"></i>
         <i id="close" class="icon iconfont icon-guanbi"></i>
     </div>
@@ -69,7 +69,7 @@
                     return currentdate;
                 },
             window.app={
-                apiUrl:"http://localhost:3808/api/",
+                apiUrl:"http://sxapi.dongneng.cc/api/",
                 userToken:"",
                 beforeSend:function(request) {
                     request.setRequestHeader("Authorization","Basic "+window.app.userToken);
