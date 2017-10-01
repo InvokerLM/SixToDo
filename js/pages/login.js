@@ -12,16 +12,17 @@ define(["jquery", "mustache"], function ($, mus) {
             this.container = options.container || $("#main-content");
             this.pageUrl = "./temPages/loginPage.html";
             this.loginBtn = "#btn-login";
-            this.skipBtn = "#btn-skip";
-            this.accountInput="#input-account";
-            this.passwordInput="#input-password";
-            this.loginCallBack=options.loginCallBack||function(){};
-            this.skipCallBack=options.skipCallBack||function(){};
+            this.regLink = "#link-reg";
+            this.accountInput = "#input-account";
+            this.passwordInput = "#input-password";
+            this.mini = "#tool-dragBar #mini";
+            this.menu = "#tool-dragBar #menu";
+            this.close = "#tool-dragBar #close";
         },
         loadHtml: function () {
             var $def = $.Deferred();
-            var context=this;
-            var container=context.container;
+            var context = this;
+            var container = context.container;
             $.get(context.pageUrl, function (temp) {
                 var renderPage = mus.render(temp);
                 container.html(renderPage);
@@ -30,28 +31,70 @@ define(["jquery", "mustache"], function ($, mus) {
             return $def.promise();
         },
         bindEvents: function (context) {
-            context=context||this;
+            context = context || this;
             var $def = $.Deferred();
-            $(context.loginBtn).bind("click",function (e) {
-               var account=$(context.accountInput).val();
-               var pwd=$(context.passwordInput).val();
-              context.unstall();
-              window.app.router.toTask();
-            });
-            $(context.skipBtn).bind("click",function (e) {
+            var loginFunc = function () {
+                var thisBtn = $(this);
+                thisBtn.text("登录中···");
+                thisBtn.unbind();
+                var account = $(context.accountInput).val();
+                var pwd = $(context.passwordInput).val();
+                $.ajax({
+                    url: window.app.apiUrl + "account",
+                    type: "post",
+                    dataType: "json",
+                    data: {
+                        "act": "login",
+                        "str": JSON.stringify({
+                            'loginId': account,
+                            'pw': pwd
+                        })
+                    },
+                    success: function (response) {
+                        if (response.Success) {
+                            context.unstall();
+                            window.app.userToken = response.Data.token;
+                            window.app.router.toTask();
+                        } else {
+
+                            alert(response.Message);
+                        }
+                        thisBtn.text("登录");
+                        thisBtn.bind("click", loginFunc);
+
+                    },
+                    error: function () {
+                        alert("数据访问异常/(ㄒoㄒ)/~~");
+                        thisBtn.text("登录");
+                        thisBtn.bind("click", loginFunc);
+                    }
+                })
+            }
+            $(context.loginBtn).bind("click", loginFunc);
+            $(context.regLink).bind("click", function (e) {
                 context.unstall();
-                window.app.router.toTask();
+                window.app.router.toRegister();
             });
+            $(context.close).click(function (e) {
+                e.preventDefault();
+                nw.Window.get().close();
+            });
+            $(context.menu).hide();
+            $(context.mini).click(function (e) {
+                e.preventDefault();
+                nw.Window.get().minimize();
+            });
+
             $def.resolve();
             return $def.promise();
         },
         install: function () {
             this.loadHtml().then(this.bindEvents);
         },
-        unstall:function(context){
-            context=context||this;
+        unstall: function (context) {
+            context = context || this;
             $(context.loginBtn).unbind();
-            $(context.skipBtn).unbind();
+            $(context.regLink).unbind();
         }
 
     }

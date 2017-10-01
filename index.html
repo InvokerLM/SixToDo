@@ -1,20 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <link type="text/css" rel="stylesheet" href="./css/site.css"/>
+<link type="text/css" rel="stylesheet" href="./css/font/iconfont.css">
 <link type="text/css" rel="stylesheet" href="./css/login.css"/>
-<script type="text/javascript" src="./js/director.js"></script>
-<script type="text/javascript" src="./js/mustache.js"></script>
+<link type="text/css" rel="stylesheet" href="./css/task.css"/>
+<link type="text/css" rel="stylesheet" href="./css/register.css"/>
+
 <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="./js/require.js"></script>
-<script type="text/javascript" src="./js/main.js"></script>
 
 <head>
     <meta charset="UTF-8">
     <title>SixToDo</title>
 </head>
 <body>
+<div id="app-dragBar">
+    <div id="icon-dragBar"></div>
+    <div id="tool-dragBar">
+        <i id="mini" class="icon iconfont icon-zuixiaohuachuangkou" title="12122"></i>
+        <i id="menu" class="icon iconfont icon-caidan"></i>
+        <i id="close" class="icon iconfont icon-guanbi"></i>
+    </div>
+</div>
+
 <div id="main-content">
 
 </div>
 </body>
+
 </html>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        requirejs.config({
+            paths:{
+                "jquery":"./js/jquery-3.2.1.min",
+                "mustache":"./js/mustache",
+                "login":"./js/pages/login",
+                "task":"./js/pages/task",
+                "register":"./js/pages/register",
+            },
+        });
+
+        requirejs(["login","task","register"],function(login,task,reg){
+            window.Guid=function newGuid()
+            {
+                var guid = "";
+                for (var i = 1; i <= 32; i++){
+                    var n = Math.floor(Math.random()*16.0).toString(16);
+                    guid +=   n;
+                    if((i==8)||(i==12)||(i==16)||(i==20))
+                        guid += "-";
+                }
+                return guid;
+            },
+                window.showDate=function(){
+                    var date = new Date();
+                    var seperator1 = "-";
+                    var month = date.getMonth() + 1;
+                    var strDate = date.getDate();
+                    if (month >= 1 && month <= 9) {
+                        month = "0" + month;
+                    }
+                    if (strDate >= 0 && strDate <= 9) {
+                        strDate = "0" + strDate;
+                    }
+                    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+                    return currentdate;
+                },
+            window.app={
+                apiUrl:"http://localhost:3808/api/",
+                userToken:"",
+                beforeSend:function(request) {
+                    request.setRequestHeader("Authorization","Basic "+window.app.userToken);
+                },
+                asyncTasks:[],
+                holdTasks:[],
+                router:{
+                    toLogin:function(){
+                        login.init({container:$("#main-content")});
+                        login.install();
+                    },
+                    toTask:function(){
+                        task.init({container:$("#main-content")});
+                        task.install();
+                    },
+                    toRegister:function(){
+                        reg.init({container:$("#main-content")});
+                        reg.install();
+                    }
+                }
+            }
+
+            window.app.router.toLogin();
+
+        })
+
+    });
+</script>

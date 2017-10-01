@@ -1,12 +1,15 @@
 
 .btn-container {
-    margin-top: 30pt;
+    margin-top: 30px;
 }
 
 #main-logo {
-    min-height: 50pt;
-    width: 80%;
+    height: 60px;
+    width: 180pt;
     margin: auto;
+    background: url("../m-logo.png") no-repeat;
+    background-size: contain;
+    padding-top: 20px;
 }
 
 .input-form {
@@ -24,11 +27,24 @@
 }
 
 #login-page {
-    width: 300pt;
-    height: 500pt;
     margin-top: 30%;
 }
 
-#btns {
-    margin-top: 6pt;
+#login-btn-group {
+    margin-top: 6px;
 }
+
+#span-reg {
+    color: grey;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+#link-reg {
+    font-size: 13px;
+    font-style: italic;
+    color: #00ae1c;
+    cursor: pointer;
+    text-decoration: underline;
+}
+

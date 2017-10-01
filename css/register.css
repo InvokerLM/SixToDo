@@ -1,0 +1,19 @@
+#span-login {
+    color: grey;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+#link-login {
+    font-size: 13px;
+    font-style: italic;
+    color: #00ae1c;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#register-title{
+    font-size: 23px;
+    color: grey;;
+    padding: 6px;
+}

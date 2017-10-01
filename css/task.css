@@ -1,0 +1,98 @@
+#task-list{
+    border-radius: 4px;
+    width: 220pt;
+    min-width: 120pt;
+    box-shadow: gainsboro;
+    margin: 0px auto;
+    border: 1px solid gainsboro;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.06);
+    height: 350px;
+    padding:0 6pt;
+    margin-top: 20px;
+    overflow-y: auto;
+    position: relative;
+}
+
+#task-list ul{
+    margin: 0;
+    padding:0;
+}
+
+#task-list li{
+    padding: 3px 0;
+    border-bottom: 1px solid gainsboro;
+    display: flex;
+}
+#task-list li .icon{
+    color: gray;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#task-list li .icon.icon-xuanze.active{
+    color: #00ae1c;
+}
+
+#task-list li .icon.icon-zhiding.active{
+    color: #dc0707;
+}
+
+#task-list-normal{
+    min-height: 60px;
+}
+.asyncAnimation{
+    animation: asyncTask 1s linear infinite;
+}
+
+@keyframes asyncTask {
+    from{
+        transform:rotate(0deg);
+        -ms-transform:rotate(0deg); 	/* IE 9 */
+        -moz-transform:rotate(0deg); 	/* Firefox */
+        -webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+        -o-transform:rotate(0deg); 	/* Opera */
+    }
+    to{
+        transform:rotate(360deg);
+        -ms-transform:rotate(360deg); 	/* IE 9 */
+        -moz-transform:rotate(360deg); 	/* Firefox */
+        -webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+        -o-transform:rotate(360deg); 	/* Opera */
+    }
+}
+
+#today-task-async{
+    position: relative;
+    background: #00ae1c;
+    width: 233pt;
+    text-align: left;
+    color: white;
+    padding: 3px 0;
+    margin: 0 auto;
+}
+
+#today-task-async #nowDate{
+    display: inline-block;
+    float: right;
+    padding: 0 3px;
+}
+
+#today-task-async i{
+    margin-left: 3px;
+    display: inline-block;
+}
+
+.line-bar{
+    text-align: left;
+    margin:3px 0px;
+}
+
+.line-bar #task-done-toggle{
+    border:1px solid gainsboro;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 3px;
+    cursor: pointer;
+}
+
+

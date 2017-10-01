@@ -6,11 +6,17 @@
   "keywords": ["taskManage"],
   "window":{
     "title":"每天六件事",
-    "icon":"icon48.png",
-    "width":600,
-    "height":300,
+    "icon":"logo.png",
+    "width":500,
+    "min_width":500,
+    "height":666,
+    "min_height":666,
     "position":"center",
     "resizable":true,
-    "show_in_taskbar":true
+    "show_in_taskbar":true,
+    "frame":false
+  },
+  "webkit":{
+    "plugin":true
   }
 }

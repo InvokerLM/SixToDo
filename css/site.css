@@ -5,7 +5,51 @@ body {
     margin: 0;
     text-align: center;
     font-family: 'Microsoft YaHei';
+    font-size: 14px;
 }
+
+#app-dragBar{
+    -webkit-user-select:none;
+    -webkit-app-region:drag;
+    width: 100%;
+    background: #00ae1c;
+    color:white;
+    height: 40px;
+    position: relative;
+}
+
+#icon-dragBar{
+    position: absolute;
+    top: 8px;
+    left: 6px;
+    background: url("../b-logo.png") no-repeat;
+    background-size: contain;
+    width: 140px;
+    height: 25px;
+}
+
+#tool-dragBar{
+    position: absolute;
+    right: 6px;
+    top: 8px;
+    -webkit-app-region:no-drag;
+}
+
+#tool-dragBar>.icon{
+    line-height: 28px;
+    padding:1px;
+    font-size: 14px;
+    display: block;
+    float: left;
+    magin:0;
+}
+
+#tool-dragBar>.icon:hover{
+    font-size:20px;
+    color: cornsilk;
+    cursor: pointer;
+}
+
 
 input::-webkit-input-placeholder {
     color: #aab2bd;
@@ -17,7 +61,8 @@ input::-webkit-input-placeholder {
     display: inline-block;
     margin: 0 auto;
     overflow: hidden;
-    min-width: 300pt;
+    min-width: 400px;
+    max-width: 700px;
     padding: 20px;
 }
 
@@ -55,7 +100,7 @@ button {
 
 button.primary {
     color: white;
-    border: 1pt solid #00ae1c;
+    border: 1px solid #00ae1c;
     background: #00ae1c;
 }
 
@@ -67,4 +112,38 @@ button:focus {
     display: none;
 }
 
+.tab-list ul{
+display: inline-block;
+    padding: 0;
+}
+
+.tab-list>ul>li{
+    list-style: none;
+    float: left;
+    width: 50px;
+    padding: 3px 12px;
+    color: white;
+    font-size: 14px;
+    background: lightgrey;
+    border: 1px solid lightgrey;
+    cursor: pointer;
+}
+
+.tab-list>ul>li.active{
+    background: #00ae1c;
+
+}
+
+.tab-list>ul>li:first-of-type{
+   border-radius: 4px 0 0 4px;
+}
+
+.tab-list>ul>li:last-of-type{
+    border-radius: 0 4px 4px 0;
+}
+
+.icon{
+    font-size: 18px;
+    font-weight: bold;
+}
 
