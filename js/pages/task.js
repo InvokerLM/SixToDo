@@ -94,7 +94,12 @@ define(["jquery", "mustache"], function ($, mus) {
                 },
                 success: function (response) {
                     if (response.Success) {
+                        debugger;
+                        if(response.Data.TodaySummary)
+                        {
 
+                            $("#today-summary-show").text(response.Data.TodaySummary);
+                        }
                         if(response.Data.TopTasks&&response.Data.TopTasks.length>0){
                            var highContainer= $("#task-list-high ul");
                            $.each(response.Data.TopTasks,function(index,ele){
@@ -126,7 +131,6 @@ define(["jquery", "mustache"], function ($, mus) {
                             });
                             context.toggleDoneList();
                         }
-
                         $def.resolve(context);
                     } else {
                         $def.reject();
@@ -210,6 +214,10 @@ define(["jquery", "mustache"], function ($, mus) {
         },
         bindEvents: function (context) {
             context = context || this;
+
+            var form=layui.form;
+            var layer=layui.layer;
+
             var $def = $.Deferred();
 
             var xuanzeClick = function (e) {
@@ -268,6 +276,12 @@ define(["jquery", "mustache"], function ($, mus) {
 
             $(context.inputNewTask).bind("keyup", function (e) {
                 var thisInput = $(this);
+                var taskAddIcon=$('#task-add-icon');
+                if(thisInput.val().length>0){
+                    taskAddIcon.show();
+                }else{
+                    taskAddIcon.hide();
+                }
                 if (e.keyCode == 13) {
                     if (!thisInput.val()) {
                         return;
@@ -301,17 +315,76 @@ define(["jquery", "mustache"], function ($, mus) {
                }
             });
 
-            $(context.tabTask).bind("click", function (e) {
-                if ($(this).hasClass("active")) {
-                    $(this).addClass("active");
-                }
+            $('.tab').bind("click", function (e) {
+                $('.tab').removeClass('active');
+                $(this).addClass('active');
+                $(".tabContent").hide();
                 $("#" + $(this).data('target')).show();
             });
 
-            $(context.tabReview).bind("click", function (e) {
-                alert("功能暂未开放O(∩_∩)O");
-            });
+            $("#today-summary-edit").bind("keydown",function(e){
+                if(e.keyCode==13&&e.shiftKey){
+                    var newValue=$(this).val()+"\n\r";
+                    $(this).val(newValue);
+                    e.returnValue=false;
+                    return false;
+                }
+                if(e.keyCode==13){
+                    e.cancelBubble=true;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var sumText=$(this).val();
+                    $.ajax({
+                        url: window.app.apiUrl + "task",
+                        type: "post",
+                        dataType: "json",
+                        contextType: "application/json",
+                        beforeSend: window.app.beforeSend,
+                        data: {
+                            "act": "updateTodaySummary",
+                            "str": JSON.stringify({summaryText:sumText}),
+                        },
+                        success: function (response) {
+                            if (response.Success) {
+                                layer.msg('更新成功', {icon: 1});
+                            } else {
+                                console.log(response.Message);
+                                layer.msg('更新失败', {icon: 2});
+                            }
+                        },
+                        error: function () {
+                            layer.msg('网络或服务器异常', {icon: 2});
+                        }
+                    })
+                    e.returnValue=false;
+                    return false;
+                }
+            })
 
+            $.ajax({
+                url: window.app.apiUrl + "Account",
+                type: "post",
+                dataType: "json",
+                contextType: "application/json",
+                beforeSend: window.app.beforeSend,
+                data: {
+                    "act": "getTeamMates",
+                    "str": JSON.stringify({}),
+                },
+                success: function (response) {
+                    if (response.Success) {
+                        var teamMember=$("#team-members");
+                        $.each(response.Data,function(i,ele){
+                            var memberOpt=mus.render("<option value='{{Id}}'>{{Name}}</option>>",ele)
+                            teamMember.append(memberOpt);
+                        });
+                        form.render();
+                    }
+                },
+                error: function () {
+                    layer.msg('网络或服务器异常', {icon: 2});
+                }
+            })
             $def.resolve();
             return $def.promise();
 

@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<link type="text/css" rel="stylesheet" href="./layui/css/layui.css">
 <link type="text/css" rel="stylesheet" href="./css/site.css"/>
 <link type="text/css" rel="stylesheet" href="./css/font/iconfont.css">
 <link type="text/css" rel="stylesheet" href="./css/login.css"/>
 <link type="text/css" rel="stylesheet" href="./css/task.css"/>
 <link type="text/css" rel="stylesheet" href="./css/register.css"/>
 
+<!--<link type="text/css" rel="stylesheet" href="./layui/css/layui.mobile.css">-->
 <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="./js/require.js"></script>
+<script type="text/javascript" src="./layui/layui.all.js"></script>
 
 <head>
     <meta charset="UTF-8">
@@ -55,6 +58,7 @@
                 return guid;
             },
                 window.showDate=function(){
+                    var showDay=new Array('星期日','星期一','星期二','星期三','星期四','星期五','星期六');
                     var date = new Date();
                     var seperator1 = "-";
                     var month = date.getMonth() + 1;
@@ -66,10 +70,10 @@
                         strDate = "0" + strDate;
                     }
                     var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
-                    return currentdate;
+                    return currentdate+" "+showDay[date.getDay()];
                 },
             window.app={
-                apiUrl:"http://sxapi.dongneng.cc/api/",
+                apiUrl:"http://localhost:3808/api/",
                 userToken:"",
                 beforeSend:function(request) {
                     request.setRequestHeader("Authorization","Basic "+window.app.userToken);

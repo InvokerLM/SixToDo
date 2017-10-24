@@ -1,12 +1,16 @@
 <div id="task-page">
     <div id="func-bar" class="tab-list">
         <ul>
-            <li id="func-task" class="active" data-target="today-task">任务</li>
-            <li id="func-review" data-target="review-history">历史</li>
+            <li id="func-task" class="tab active" data-target="today-task">任务</li>
+            <li id="func-review" class="tab" data-target="review-team">查看</li>
         </ul>
     </div>
-    <div id="today-task">
+    <div id="today-task" class="tabContent">
+        <div id="today-summary-show"  style="display: block;min-height: 40px;width: 220pt;height: auto;overflow: hidden"></div>
+        <textarea id="today-summary-edit" style="display: block;min-height: 40px;max-width: 220pt;" placeholder="请输入任务安排概况，按回enter保存,shift+enter换行"></textarea>
         <input id="new-task" type="text" placeholder="添加新任务"/>
+        <i id="task-add-icon" title="添加任务" style="color: grey;margin-left:-24px;display: none;cursor: pointer" class="icon iconfont icon-Enter"></i>
+
         <div id="task-list">
             <div id="task-list-high">
                 <ul>
@@ -30,8 +34,19 @@
         </div>
         <div id="today-task-async"><i class="icon iconfont icon-tongbu"></i><span class="asyncNotify"></span><span id="nowDate"></span></div>
     </div>
-    <div id="review-history" class="hide">
+    <div id="review-team" class="tabContent" style="display: none;">
+        <div class="layui-form" >
+        <div class="layui-form-item">
+        <div class="layui-inline">
+            <div class="layui-input-inline">
+                <select id="team-members" name="team-members" lay-verify="required" lay-search>
+                    <option value="">选择或搜索成员</option>
 
+                </select>
+            </div>
+        </div>
+        </div>
+        </div>
     </div>
 
 

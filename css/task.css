@@ -44,6 +44,24 @@
     animation: asyncTask 1s linear infinite;
 }
 
+#review-team{
+    min-height: 500px;
+}
+
+#today-summary-show{
+    border: 1px solid lightgrey;
+    border-radius: 4pt;
+    padding: 6pt;
+    font-family: "Microsoft YaHei";
+    min-width: 120pt;
+    width: 220pt;
+    margin: 3pt auto;
+    outline: none;
+    display: inline-block;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.06);
+    text-align: left;
+}
+
 @keyframes asyncTask {
     from{
         transform:rotate(0deg);
