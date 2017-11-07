@@ -5,7 +5,7 @@
 
 #main-logo {
     height: 60px;
-    width: 180pt;
+    width: 150pt;
     margin: auto;
     background: url("../m-logo.png") no-repeat;
     background-size: contain;
@@ -27,7 +27,7 @@
 }
 
 #login-page {
-    margin-top: 30%;
+    margin-top: 25%;
 }
 
 #login-btn-group {
@@ -43,7 +43,7 @@
 #link-reg {
     font-size: 13px;
     font-style: italic;
-    color: #00ae1c;
+    color: #84C93B;
     cursor: pointer;
     text-decoration: underline;
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<link type="text/css" rel="stylesheet" href="./layui/css/layui.css">
+<!--<link type="text/css" rel="stylesheet" href="./layui/css/layui.css">-->
 <link type="text/css" rel="stylesheet" href="./css/site.css"/>
 <link type="text/css" rel="stylesheet" href="./css/font/iconfont.css">
 <link type="text/css" rel="stylesheet" href="./css/login.css"/>
@@ -10,7 +10,7 @@
 <!--<link type="text/css" rel="stylesheet" href="./layui/css/layui.mobile.css">-->
 <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="./js/require.js"></script>
-<script type="text/javascript" src="./layui/layui.all.js"></script>
+<!--<script type="text/javascript" src="./layui/layui.all.js"></script>-->
 
 <head>
     <meta charset="UTF-8">
@@ -18,8 +18,11 @@
 </head>
 <body>
 <div id="app-dragBar">
-    <div id="icon-dragBar"></div>
-    <div id="tool-dragBar">
+    <div id="icon-dragBar-left"></div>
+    <div id="icon-dragBar-right"></div>
+    <div id="dragBar-center"></div>
+
+    <div id="content-toolbar">
         <i id="mini" class="icon iconfont icon-zuixiaohuachuangkou"></i>
         <i id="menu" class="icon iconfont icon-caidan"></i>
         <i id="close" class="icon iconfont icon-guanbi"></i>
@@ -39,6 +42,7 @@
             paths:{
                 "jquery":"./js/jquery-3.2.1.min",
                 "mustache":"./js/mustache",
+                "std":"./js/std-ext",
                 "login":"./js/pages/login",
                 "task":"./js/pages/task",
                 "register":"./js/pages/register",

@@ -1,3 +1,28 @@
+/*
+ *  STYLE 1
+ */
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: rgba(211,211,211,.3);
+}
+
+
 body {
     width: 100%;
     height: 100%;
@@ -8,45 +33,104 @@ body {
     font-size: 14px;
 }
 
+ul{
+    margin: 0;
+    padding:0;
+    text-align: left;
+    list-style: none;
+}
+
 #app-dragBar{
     -webkit-user-select:none;
     -webkit-app-region:drag;
     width: 100%;
-    background: #00ae1c;
+    background: linear-gradient(to bottom, #5ec036 0%, #9ec921 100%);
     color:white;
-    height: 40px;
+    height: 50px;
     position: relative;
 }
 
-#icon-dragBar{
+#icon-dragBar-left{
     position: absolute;
-    top: 8px;
-    left: 6px;
-    background: url("../b-logo.png") no-repeat;
+    bottom: 8px;
+    left: 18px;
+    background: url(../b-logo.png) no-repeat;
     background-size: contain;
-    width: 140px;
-    height: 25px;
+    width: 128px;
+    height: 28px;
 }
 
-#tool-dragBar{
+#icon-dragBar-right{
     position: absolute;
-    right: 6px;
-    top: 8px;
-    -webkit-app-region:no-drag;
+    bottom: 8px;
+    right: 18px;
+    background: url(../m-logo.png) no-repeat;
+    background-size: contain;
+    width: 128px;
+    height: 28px;
 }
 
-#tool-dragBar>.icon{
-    line-height: 28px;
+#dragBar-center{
+
+    position: absolute;
+    left:calc(50% - 85px);
+    bottom: 0;
+    width:160px;
+    height:10px;
+    background-color:white;
+}
+#dragBar-center:before{
+    content:'';
+    display:block;
+    width:20px;
+    height:10px;
+    position:absolute;
+    transform:skewX(-30deg);
+    background:white;
+    border-top-left-radius:8px;
+    left:-10px;
+    top:0;
+}
+#dragBar-center:after{
+    content:'';
+    display:block;
+    width:20px;
+    height:10px;
+    position:absolute;
+    transform:skewX(30deg);
+    background:white;
+    border-top-right-radius:8px;
+    top:0;
+    right:-10px;
+}
+/*#dragBar-center{
+    position: absolute;
+    left:calc(50% - 110px);
+    bottom: 0;
+    border-bottom: 100px solid white;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    height: 20px;
+    width: 100px;
+}*/
+
+#content-toolbar{
+    position: absolute;
+    right: 16px;
+    bottom: -24px;
+    -webkit-app-region: no-drag;
+    color: #9EA0A2;
+}
+
+#content-toolbar>.icon{
     padding:1px;
-    font-size: 14px;
+    font-size: 18px;
     display: block;
     float: left;
     magin:0;
 }
 
-#tool-dragBar>.icon:hover{
-    font-size:20px;
-    color: cornsilk;
+#content-toolbar>.icon:hover{
     cursor: pointer;
 }
 
@@ -71,12 +155,11 @@ input,textarea {
     border-radius: 4pt;
     padding: 6pt;
     font-family: "Microsoft YaHei";
-    min-width: 120pt;
-    width: 220pt;
+    width: 260px;
     margin: 3pt auto;
     outline: none;
     display: inline-block;
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.06);
+    box-sizing: content-box;
 }
 
 input:focus,textarea:focus {
@@ -87,8 +170,7 @@ button {
     border: 1pt solid lightgrey;
     border-radius: 4pt;
     padding: 6pt;
-    min-width: 120pt;
-    width: 220pt;
+    width: 260px;
     margin: 3pt auto;
     display: inline-block;
     box-sizing: content-box;
@@ -100,12 +182,13 @@ button {
 
 button.primary {
     color: white;
-    border: 1px solid #00ae1c;
-    background: #00ae1c;
+    border: 1px solid #9ec921;
+    background: linear-gradient(to bottom, #5ec036 0%, #9ec921 100%);
 }
 
-button:focus {
-    border-color: lightblue;
+button:active {
+    border-color: #8cc933;
+    background: linear-gradient(to bottom, #5ec036 0%, #91c92e 100%);
 }
 
 .hide{
@@ -120,26 +203,26 @@ display: inline-block;
 .tab-list>ul>li{
     list-style: none;
     float: left;
-    width: 50px;
-    padding: 3px 12px;
-    color: white;
+    width: 85px;
+    padding: 4px 3px;
+    color: black;
     font-size: 14px;
-    background: lightgrey;
-    border: 1px solid lightgrey;
+    background:  linear-gradient(to bottom, #8A8889 0%, #C1C1C1 100%);
+    border: none;
     cursor: pointer;
 }
 
 .tab-list>ul>li.active{
-    background: #00ae1c;
+    background: linear-gradient(to bottom, #61c03e 0%, #91c92e 100%);
 
 }
 
 .tab-list>ul>li:first-of-type{
-   border-radius: 4px 0 0 4px;
+   border-radius: 6px;
 }
 
 .tab-list>ul>li:last-of-type{
-    border-radius: 0 4px 4px 0;
+    border-radius: 6px;
 }
 
 .icon{
@@ -147,3 +230,36 @@ display: inline-block;
     font-weight: bold;
 }
 
+.std-dropdownListContainer{
+
+    margin: 3pt auto ;
+    border-radius: 4px;
+    border: 1px solid lightgrey;
+    box-shadow: lightgray 0px 0px 5px;
+    background: white;
+}
+
+.std-dropdownListContainer>ul>li{
+    padding:6pt;
+    cursor: pointer;
+}
+
+.std-dropdownListContainer>ul>li.select{
+    background: linear-gradient(to bottom, #5ec036 0%, #9ec921 100%);
+}
+
+.std-dropdownListContainer>ul>li:hover{
+    background: linear-gradient(to bottom, #5ec036 0%, #9ec921 100%);
+}
+
+.label{
+    font-size: 12px;
+    text-align: center;
+    padding: 1px;
+    border-radius: 4px;
+}
+
+.label-green{
+    background: #9ec921;
+    color: white;
+}

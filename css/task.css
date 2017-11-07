@@ -1,15 +1,10 @@
+#func-bar{
+    margin-bottom: 10px;
+}
+
 #task-list{
-    border-radius: 4px;
-    width: 220pt;
-    min-width: 120pt;
-    box-shadow: gainsboro;
-    margin: 0px auto;
-    border: 1px solid gainsboro;
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.06);
     height: 350px;
-    padding:0 6pt;
-    margin-top: 20px;
-    overflow-y: auto;
+    width: 100%;
     position: relative;
 }
 
@@ -48,18 +43,109 @@
     min-height: 500px;
 }
 
-#today-summary-show{
-    border: 1px solid lightgrey;
-    border-radius: 4pt;
-    padding: 6pt;
-    font-family: "Microsoft YaHei";
-    min-width: 120pt;
-    width: 220pt;
-    margin: 3pt auto;
-    outline: none;
-    display: inline-block;
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.06);
+
+
+#summary-container{
+    border: 1px solid lightgray;
+    box-shadow: lightgray 0px 0px 5px;
+    border-radius: 4px;
+    width: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding:0 10px;
+}
+
+#tasks-container{
+    border: 1px solid lightgray;
+    box-shadow: lightgray 0px 0px 5px;
+    border-radius: 4px;
+    width: 300px;
+    margin: 0 auto;
+    margin-top:20px;
+    overflow: hidden;
+    padding:0 10px;
+}
+
+#task-view-container{
+    border: 1px solid lightgray;
+    box-shadow: lightgray 0px 0px 5px;
+    border-radius: 4px;
+    width: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding:0 10px;
+    min-height: 500px;
+}
+
+
+#summary-container>.task-title-line,#tasks-container>.task-title-line,#task-view-container>.task-title-line{
+    width: 100%;
+    border-bottom:1px dashed lightgray;
+    overflow: hidden;
+    padding:6px 0;
+}
+
+.task-title-line>.title{
+    float: left;
+}
+
+.task-title-line>.operate{
+    float: right;
+    cursor: pointer;
+}
+
+.task-title-line>.operate:hover{
+    color: #9ec921;
+}
+
+.task-content{
+    position: relative;
+    width: 100%;
+}
+
+#task-background-content{
+    color: lightgrey;
+    padding: 20px;
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 0;
+}
+
+#task-view-items{
     text-align: left;
+    background: white;
+    padding: 6pt;
+}
+
+#task-view-items>ul>li{
+    overflow: hidden;
+    padding: 3px 0;
+}
+
+#task-view-items>ul>li>div{
+    float: left;
+}
+
+#task-view-summary{
+    text-align: left;
+    background: white;
+    padding: 6pt;
+    border-bottom:1px dashed lightgray;
+}
+
+#summary-container>#summary-text{
+    min-height: 80px;
+    width: 100%;
+    border:none;
+    padding:0;
+    resize: none;
+}
+
+#new-task-container{
+    position: absolute;
+    bottom: 6px;
+    width: 100%;
 }
 
 @keyframes asyncTask {
@@ -81,12 +167,13 @@
 
 #today-task-async{
     position: relative;
-    background: #00ae1c;
-    width: 233pt;
+    background: linear-gradient(to bottom, #5ec036 0%, #9ec921 100%);
+    width: 300px;
     text-align: left;
     color: white;
-    padding: 3px 0;
-    margin: 0 auto;
+    padding: 3px 10px;
+    margin: 3px auto;
+    border-radius: 4px;
 }
 
 #today-task-async #nowDate{

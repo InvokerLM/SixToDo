@@ -1,52 +1,74 @@
 <div id="task-page">
     <div id="func-bar" class="tab-list">
         <ul>
-            <li id="func-task" class="tab active" data-target="today-task">任务</li>
-            <li id="func-review" class="tab" data-target="review-team">查看</li>
+            <li id="func-task" class="tab active" data-target="today-task">任务 mission</li>
+            <li id="func-review" class="tab" data-target="review-team">查看 view</li>
         </ul>
     </div>
-    <div id="today-task" class="tabContent">
-        <div id="today-summary-show"  style="display: block;min-height: 40px;width: 220pt;height: auto;overflow: hidden"></div>
-        <textarea id="today-summary-edit" style="display: block;min-height: 40px;max-width: 220pt;" placeholder="请输入任务安排概况，按回enter保存,shift+enter换行"></textarea>
-        <input id="new-task" type="text" placeholder="添加新任务"/>
-        <i id="task-add-icon" title="添加任务" style="color: grey;margin-left:-24px;display: none;cursor: pointer" class="icon iconfont icon-Enter"></i>
-
-        <div id="task-list">
-            <div id="task-list-high">
-                <ul>
-
-                </ul>
+    <div id="today-task" class="tabContent" style="display: none;">
+        <div id="summary-container">
+            <div class="task-title-line">
+                <span class="title">双升总结</span>
+                <span id="summary-commit" class="operate">保存</span>
             </div>
-            <div id="task-list-normal">
-                <ul>
 
-                </ul>
+            <textarea id="summary-text" placeholder="今日总结..."></textarea>
+        </div>
+        <div id="tasks-container">
+            <div class="task-title-line">
+                <span class="title">每天6件事</span>
             </div>
-            <div id="task-list-done" >
-                <div class="line-bar" style="display: none">
-                    <div id="task-done-toggle"><i class="icon iconfont icon-arrowright"></i>已完成任务</div>
+            <div id="task-list">
+                <div id="task-list-high">
+                    <ul>
+
+                    </ul>
+                </div>
+                <div id="task-list-normal">
+                    <ul>
+
+                    </ul>
+                </div>
+                <div id="task-list-done" >
+                    <div class="line-bar" style="display: none">
+                        <div id="task-done-toggle"><i class="icon iconfont icon-arrowright"></i>已完成任务</div>
                     </div>
-                <ul style="display: none;">
+                    <ul style="display: none;">
 
-                </ul>
+                    </ul>
+                </div>
+                <div id="new-task-container">
+                <input id="new-task" type="text" placeholder="添加新任务"/>
+                <i id="task-add-icon" title="添加任务" style="color: grey;margin-left:-24px;display: none;cursor: pointer" class="icon iconfont icon-Enter"></i>
+                </div>
             </div>
-
         </div>
-        <div id="today-task-async"><i class="icon iconfont icon-tongbu"></i><span class="asyncNotify"></span><span id="nowDate"></span></div>
+        <div id="today-task-async">
+            <i class="icon iconfont icon-tongbu"></i>
+            <span class="asyncNotify"></span>
+            <span id="nowDate"></span>
+        </div>
     </div>
-    <div id="review-team" class="tabContent" style="display: none;">
-        <div class="layui-form" >
-        <div class="layui-form-item">
-        <div class="layui-inline">
-            <div class="layui-input-inline">
-                <select id="team-members" name="team-members" lay-verify="required" lay-search>
-                    <option value="">选择或搜索成员</option>
+    <div id="review-team" class="tabContent" >
+       <div id="task-view-container">
+           <div class="task-title-line">
+               <input id="search-member" type="text" placeholder="搜索并选择成员"/>
+           </div>
+           <div class="task-content">
+               <div id="task-background-content">
+                   加载中...
+               </div>
 
-                </select>
-            </div>
-        </div>
-        </div>
-        </div>
+               <div id="task-view-summary">
+
+               </div>
+               <div id="task-view-items">
+                   <ul>
+
+                   </ul>
+               </div>
+           </div>
+       </div>
     </div>
 
 

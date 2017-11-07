@@ -1,5 +1,5 @@
 ;
-define(["jquery", "mustache"], function ($, mus) {
+define(["jquery", "mustache", "std"], function ($, mus, std) {
     function TaskPage() {
         this.hasInit = false;
     }
@@ -26,8 +26,8 @@ define(["jquery", "mustache"], function ($, mus) {
             })
             return $def.promise();
         },
-        loadTasks:function(context){
-        var context=context||this;
+        loadTasks: function (context) {
+            var context = context || this;
             var $def = $.Deferred();
             var xuanzeClick = function (e) {
                 var xuanze = $(this);
@@ -37,7 +37,7 @@ define(["jquery", "mustache"], function ($, mus) {
                         key: xuanze.closest("li").data("key"),
                         content: xuanze.closest("li").find(".content").text(),
                         taskStatus: "进行中",
-                        isTop:xuanze.closest("li").find(".icon-zhiding").hasClass("active"),
+                        isTop: xuanze.closest("li").find(".icon-zhiding").hasClass("active"),
                     })
 
                     if (li.find(".icon-zhiding").hasClass("active")) {
@@ -50,7 +50,7 @@ define(["jquery", "mustache"], function ($, mus) {
                         key: xuanze.closest("li").data("key"),
                         content: xuanze.closest("li").find(".content").text(),
                         taskStatus: "已完成",
-                        isTop:xuanze.closest("li").find(".icon-zhiding").hasClass("active"),
+                        isTop: xuanze.closest("li").find(".icon-zhiding").hasClass("active"),
                     });
                     $("#task-list-done>ul").append(li);
                 }
@@ -59,23 +59,23 @@ define(["jquery", "mustache"], function ($, mus) {
                 context.asyncTasks();
             };
 
-            var zhidingClick=function(e){
-                var zhiding=$(this);
-                var li=zhiding.closest("li");
-                if(zhiding.hasClass("active")){
-                    window.app.asyncTasks.push({
-                        key:zhiding.closest("li").data("key"),
-                        content:zhiding.closest("li").find(".content").text(),
-                        taskStatus:"进行中",
-                        isTop:false,
-                    })
-                    $("#task-list-normal>ul").append(li);
-                }else{
+            var zhidingClick = function (e) {
+                var zhiding = $(this);
+                var li = zhiding.closest("li");
+                if (zhiding.hasClass("active")) {
                     window.app.asyncTasks.push({
                         key: zhiding.closest("li").data("key"),
                         content: zhiding.closest("li").find(".content").text(),
                         taskStatus: "进行中",
-                        isTop:true,
+                        isTop: false,
+                    })
+                    $("#task-list-normal>ul").append(li);
+                } else {
+                    window.app.asyncTasks.push({
+                        key: zhiding.closest("li").data("key"),
+                        content: zhiding.closest("li").find(".content").text(),
+                        taskStatus: "进行中",
+                        isTop: true,
                     });
                     $("#task-list-high>ul").append(li);
                 }
@@ -94,40 +94,41 @@ define(["jquery", "mustache"], function ($, mus) {
                 },
                 success: function (response) {
                     if (response.Success) {
-                        debugger;
-                        if(response.Data.TodaySummary)
-                        {
-
-                            $("#today-summary-show").text(response.Data.TodaySummary);
+                        if (response.Data.TodaySummary) {
+                            $("#summary-text").val(response.Data.TodaySummary);
                         }
-                        if(response.Data.TopTasks&&response.Data.TopTasks.length>0){
-                           var highContainer= $("#task-list-high ul");
-                           $.each(response.Data.TopTasks,function(index,ele){
-                                var parseTemp="<li data-key='{{key}}'><div style='width: 20px;'><i title='完成任务' class='icon iconfont icon-xuanze'></i></div><div class='content' style='flex: 1;text-align: left;word-wrap: break-word;padding: 0 6px;width: 220px;'>{{content}}</div><div style='width: 20px;'><i title='置顶' class='icon iconfont icon-zhiding active'></i></div></li>";
-                                var liHtml=mus.render(parseTemp,{key:ele.key,content:ele.content});
+                        if (response.Data.TopTasks && response.Data.TopTasks.length > 0) {
+                            var highContainer = $("#task-list-high ul");
+                            $.each(response.Data.TopTasks, function (index, ele) {
+                                var parseTemp = "<li data-key='{{key}}'><div style='width: 20px;'><i title='完成任务' class='icon iconfont icon-xuanze'></i></div><div class='content' style='flex: 1;text-align: left;word-wrap: break-word;padding: 0 6px;width: 220px;'>{{content}}</div><div style='width: 20px;'><i title='置顶' class='icon iconfont icon-zhiding active'></i></div></li>";
+                                var liHtml = mus.render(parseTemp, {key: ele.key, content: ele.content});
                                 highContainer.append(liHtml);
-                               $("li[data-key='"+ele.key+"']").find(".icon-xuanze").bind("click", xuanzeClick);
-                               $("li[data-key='"+ele.key+"']").find(".icon-zhiding").bind("click", zhidingClick);
-                           });
-                        }
-                        if(response.Data.NormalTasks&&response.Data.NormalTasks.length>0){
-                            var normalContainer= $("#task-list-normal ul");
-                            $.each(response.Data.NormalTasks,function(index,ele){
-                                var parseTemp="<li data-key='{{key}}'><div style='width: 20px;'><i title='完成任务' class='icon iconfont icon-xuanze'></i></div><div class='content' style='flex: 1;text-align: left;word-wrap: break-word;padding: 0 6px;width: 220px;'>{{content}}</div><div style='width: 20px;'><i title='置顶' class='icon iconfont icon-zhiding'></i></div></li>";
-                                var liHtml=mus.render(parseTemp,{key:ele.key,content:ele.content});
-                                normalContainer.append(liHtml);
-                                $("li[data-key='"+ele.key+"']").find(".icon-xuanze").bind("click", xuanzeClick);
-                                $("li[data-key='"+ele.key+"']").find(".icon-zhiding").bind("click", zhidingClick);
+                                $("li[data-key='" + ele.key + "']").find(".icon-xuanze").bind("click", xuanzeClick);
+                                $("li[data-key='" + ele.key + "']").find(".icon-zhiding").bind("click", zhidingClick);
                             });
                         }
-                        if(response.Data.DoneTasks&&response.Data.DoneTasks.length>0){
-                            var doneContainer= $("#task-list-done ul");
-                            $.each(response.Data.DoneTasks,function(index,ele){
-                                var parseTemp="<li data-key='{{key}}'><div style='width: 20px;'><i title='完成任务' class='icon iconfont icon-xuanze active'></i></div><div class='content' style='flex: 1;text-align: left;word-wrap: break-word;padding: 0 6px;width: 220px;'>{{content}}</div><div style='width: 20px;'><i title='置顶' class='icon iconfont icon-zhiding {{isTop}}'></i></div></li>";
-                                var liHtml=mus.render(parseTemp,{key:ele.key,content:ele.content,isTop:ele.isTop?"active":""});
+                        if (response.Data.NormalTasks && response.Data.NormalTasks.length > 0) {
+                            var normalContainer = $("#task-list-normal ul");
+                            $.each(response.Data.NormalTasks, function (index, ele) {
+                                var parseTemp = "<li data-key='{{key}}'><div style='width: 20px;'><i title='完成任务' class='icon iconfont icon-xuanze'></i></div><div class='content' style='flex: 1;text-align: left;word-wrap: break-word;padding: 0 6px;width: 220px;'>{{content}}</div><div style='width: 20px;'><i title='置顶' class='icon iconfont icon-zhiding'></i></div></li>";
+                                var liHtml = mus.render(parseTemp, {key: ele.key, content: ele.content});
+                                normalContainer.append(liHtml);
+                                $("li[data-key='" + ele.key + "']").find(".icon-xuanze").bind("click", xuanzeClick);
+                                $("li[data-key='" + ele.key + "']").find(".icon-zhiding").bind("click", zhidingClick);
+                            });
+                        }
+                        if (response.Data.DoneTasks && response.Data.DoneTasks.length > 0) {
+                            var doneContainer = $("#task-list-done ul");
+                            $.each(response.Data.DoneTasks, function (index, ele) {
+                                var parseTemp = "<li data-key='{{key}}'><div style='width: 20px;'><i title='完成任务' class='icon iconfont icon-xuanze active'></i></div><div class='content' style='flex: 1;text-align: left;word-wrap: break-word;padding: 0 6px;width: 220px;'>{{content}}</div><div style='width: 20px;'><i title='置顶' class='icon iconfont icon-zhiding {{isTop}}'></i></div></li>";
+                                var liHtml = mus.render(parseTemp, {
+                                    key: ele.key,
+                                    content: ele.content,
+                                    isTop: ele.isTop ? "active" : ""
+                                });
                                 doneContainer.append(liHtml);
-                                $("li[data-key='"+ele.key+"']").find(".icon-xuanze").bind("click", xuanzeClick);
-                                $("li[data-key='"+ele.key+"']").find(".icon-zhiding").bind("click", zhidingClick);
+                                $("li[data-key='" + ele.key + "']").find(".icon-xuanze").bind("click", xuanzeClick);
+                                $("li[data-key='" + ele.key + "']").find(".icon-zhiding").bind("click", zhidingClick);
                             });
                             context.toggleDoneList();
                         }
@@ -135,7 +136,7 @@ define(["jquery", "mustache"], function ($, mus) {
                     } else {
                         $def.reject();
                         console.log(response.Message);
-                        context.doneAsyncAnimation(false,"同步失败！");
+                        context.doneAsyncAnimation(false, "同步失败！");
                     }
                 },
                 error: function () {
@@ -143,51 +144,48 @@ define(["jquery", "mustache"], function ($, mus) {
                     alert("任务获取失败！")
                 }
             });
-             return $def.promise();
-
-
+            return $def.promise();
         },
         startAsyncAnimation: function () {
             var asyncContainer = $("#today-task-async");
             var asyncIcon = asyncContainer.find(".icon-tongbu");
             asyncIcon.addClass("asyncAnimation");
         },
-        doneAsyncAnimation: function (isAsync,text) {
+        doneAsyncAnimation: function (isAsync, text) {
             var asyncContainer = $("#today-task-async");
             var asyncIcon = asyncContainer.find(".icon-tongbu");
             asyncIcon.removeClass("asyncAnimation");
             asyncContainer.find(".asyncNotify").text(text);
-            if(isAsync){
-                var holdLength=window.app.holdTasks.length;
-                window.app.holdTasks.splice(0,holdLength);
-                window.app.asyncTasks.splice(0,holdLength);
+            if (isAsync) {
+                var holdLength = window.app.holdTasks.length;
+                window.app.holdTasks.splice(0, holdLength);
+                window.app.asyncTasks.splice(0, holdLength);
             }
             setTimeout(function () {
                 $("#today-task-async .asyncNotify").text("");
             }, 3000);
         },
-        toggleDoneList:function(){
+        toggleDoneList: function () {
             $("#task-list-done ul li .icon-zhiding").hide();
             $("#task-list-normal ul li .icon-zhiding").show();
             $("#task-list-high ul li .icon-zhiding").show();
-            if($("#task-list-done ul li").length>0){
+            if ($("#task-list-done ul li").length > 0) {
 
                 $("#task-list-done .line-bar").show();
-                if($("#task-list-done .line-bar .icon").hasClass("icon-arrowright")){
+                if ($("#task-list-done .line-bar .icon").hasClass("icon-arrowright")) {
                     $("#task-list-done ul").hide();
-                }else{
+                } else {
                     $("#task-list-done ul").show();
                 }
-
-            }else{
+            } else {
                 $("#task-list-done .line-bar").hide();
             }
         },
         asyncTasks: function () {
             var context = this;
             context.startAsyncAnimation();
-            if(window.app.holdTasks.length==0){
-                window.app.holdTasks=window.app.holdTasks.concat(window.app.asyncTasks);
+            if (window.app.holdTasks.length == 0) {
+                window.app.holdTasks = window.app.holdTasks.concat(window.app.asyncTasks);
             }
             $.ajax({
                 url: window.app.apiUrl + "task",
@@ -201,22 +199,19 @@ define(["jquery", "mustache"], function ($, mus) {
                 },
                 success: function (response) {
                     if (response.Success) {
-                        context.doneAsyncAnimation(true,"同步成功！");
+                        context.doneAsyncAnimation(true, "同步成功！");
                     } else {
                         console.log(response.Message);
-                        context.doneAsyncAnimation(false,"同步失败！");
+                        context.doneAsyncAnimation(false, "同步失败！");
                     }
                 },
                 error: function () {
-                    context.doneAsyncAnimation(false,"同步失败！");
+                    context.doneAsyncAnimation(false, "同步失败！");
                 }
             })
         },
         bindEvents: function (context) {
             context = context || this;
-
-            var form=layui.form;
-            var layer=layui.layer;
 
             var $def = $.Deferred();
 
@@ -228,7 +223,7 @@ define(["jquery", "mustache"], function ($, mus) {
                         key: xuanze.closest("li").data("key"),
                         content: xuanze.closest("li").find(".content").text(),
                         taskStatus: "进行中",
-                        isTop:xuanze.closest("li").find(".icon-zhiding").hasClass("active"),
+                        isTop: xuanze.closest("li").find(".icon-zhiding").hasClass("active"),
                     })
 
                     if (li.find(".icon-zhiding").hasClass("active")) {
@@ -241,7 +236,7 @@ define(["jquery", "mustache"], function ($, mus) {
                         key: xuanze.closest("li").data("key"),
                         content: xuanze.closest("li").find(".content").text(),
                         taskStatus: "已完成",
-                        isTop:xuanze.closest("li").find(".icon-zhiding").hasClass("active"),
+                        isTop: xuanze.closest("li").find(".icon-zhiding").hasClass("active"),
                     });
                     $("#task-list-done>ul").append(li);
                 }
@@ -250,23 +245,23 @@ define(["jquery", "mustache"], function ($, mus) {
                 context.asyncTasks();
             };
 
-            var zhidingClick=function(e){
-                var zhiding=$(this);
-                var li=zhiding.closest("li");
-                if(zhiding.hasClass("active")){
-                    window.app.asyncTasks.push({
-                        key:zhiding.closest("li").data("key"),
-                        content:zhiding.closest("li").find(".content").text(),
-                        taskStatus:"进行中",
-                        isTop:false,
-                    })
-                    $("#task-list-normal>ul").append(li);
-                }else{
+            var zhidingClick = function (e) {
+                var zhiding = $(this);
+                var li = zhiding.closest("li");
+                if (zhiding.hasClass("active")) {
                     window.app.asyncTasks.push({
                         key: zhiding.closest("li").data("key"),
                         content: zhiding.closest("li").find(".content").text(),
                         taskStatus: "进行中",
-                        isTop:true,
+                        isTop: false,
+                    })
+                    $("#task-list-normal>ul").append(li);
+                } else {
+                    window.app.asyncTasks.push({
+                        key: zhiding.closest("li").data("key"),
+                        content: zhiding.closest("li").find(".content").text(),
+                        taskStatus: "进行中",
+                        isTop: true,
                     });
                     $("#task-list-high>ul").append(li);
                 }
@@ -276,10 +271,10 @@ define(["jquery", "mustache"], function ($, mus) {
 
             $(context.inputNewTask).bind("keyup", function (e) {
                 var thisInput = $(this);
-                var taskAddIcon=$('#task-add-icon');
-                if(thisInput.val().length>0){
+                var taskAddIcon = $('#task-add-icon');
+                if (thisInput.val().length > 0) {
                     taskAddIcon.show();
-                }else{
+                } else {
                     taskAddIcon.hide();
                 }
                 if (e.keyCode == 13) {
@@ -295,24 +290,24 @@ define(["jquery", "mustache"], function ($, mus) {
                         key: key,
                         content: value,
                         taskStatus: "未开始",
-                        isTop:false,
+                        isTop: false,
                     };
                     window.app.asyncTasks.push(task);
-                    $("li[data-key='"+key+"']").find(".icon-xuanze").bind("click", xuanzeClick);
-                    $("li[data-key='"+key+"']").find(".icon-zhiding").bind("click", zhidingClick);
+                    $("li[data-key='" + key + "']").find(".icon-xuanze").bind("click", xuanzeClick);
+                    $("li[data-key='" + key + "']").find(".icon-zhiding").bind("click", zhidingClick);
                     context.asyncTasks();
                     thisInput.val("");
                 }
             });
 
-            $("#task-done-toggle").bind("click",function(e){
-               if($(this).find(".icon").hasClass("icon-arrowright")){
-                   $(this).find(".icon").removeClass("icon-arrowright").addClass("icon-right");
-                   $("#task-list-done ul").show();
-               }else{
-                   $(this).find(".icon").removeClass("icon-right").addClass("icon-arrowright");
-                   $("#task-list-done ul").hide();
-               }
+            $("#task-done-toggle").bind("click", function (e) {
+                if ($(this).find(".icon").hasClass("icon-arrowright")) {
+                    $(this).find(".icon").removeClass("icon-arrowright").addClass("icon-right");
+                    $("#task-list-done ul").show();
+                } else {
+                    $(this).find(".icon").removeClass("icon-right").addClass("icon-arrowright");
+                    $("#task-list-done ul").hide();
+                }
             });
 
             $('.tab').bind("click", function (e) {
@@ -322,18 +317,8 @@ define(["jquery", "mustache"], function ($, mus) {
                 $("#" + $(this).data('target')).show();
             });
 
-            $("#today-summary-edit").bind("keydown",function(e){
-                if(e.keyCode==13&&e.shiftKey){
-                    var newValue=$(this).val()+"\n\r";
-                    $(this).val(newValue);
-                    e.returnValue=false;
-                    return false;
-                }
-                if(e.keyCode==13){
-                    e.cancelBubble=true;
-                    e.preventDefault();
-                    e.stopPropagation();
-                    var sumText=$(this).val();
+            $("#summary-commit").bind("click", function (e) {
+                    var sumText = $('#summary-text').val();
                     $.ajax({
                         url: window.app.apiUrl + "task",
                         type: "post",
@@ -342,47 +327,62 @@ define(["jquery", "mustache"], function ($, mus) {
                         beforeSend: window.app.beforeSend,
                         data: {
                             "act": "updateTodaySummary",
-                            "str": JSON.stringify({summaryText:sumText}),
+                            "str": JSON.stringify({summaryText: sumText}),
                         },
                         success: function (response) {
                             if (response.Success) {
-                                layer.msg('更新成功', {icon: 1});
+                                alert("总结提交成功!");
                             } else {
                                 console.log(response.Message);
-                                layer.msg('更新失败', {icon: 2});
+                                alert("总结提交失败！");
                             }
                         },
                         error: function () {
-                            layer.msg('网络或服务器异常', {icon: 2});
+                            alert("网络或服务器异常！");
+                        }
+                    });
+                }
+            );
+
+            $("#search-member").stdDropDownTreeList({
+                dataSource: window.app.apiUrl + "Team",
+                onSelect: function (e) {
+                    var userId = e.item.value;
+                    $('#task-background-content').show();
+                    $.ajax({
+                        url: window.app.apiUrl + "task",
+                        type: "post",
+                        dataType: "json",
+                        contextType: "application/json",
+                        beforeSend: window.app.beforeSend,
+                        data: {
+                            "act": "viewTodayTask",
+                            "str": JSON.stringify({userId: userId}),
+                        },
+                        success: function (response) {
+                            if (response.Success) {
+                                $('#task-background-content').hide();
+                                $("#task-view-summary").html("");
+                                $("#task-view-summary").append("<span>总结：</span><br>");
+                                $("#task-view-summary").append("<span>"+response.Data.SummaryInfo+"</span>");
+                                $('#task-view-items').find('ul').html('');
+                                $.each(response.Data.TaskItems, function (index, ele) {
+                                    var liTemp = mus.render("<li><div style='width: 20px;'>{{index}}、</div><div class=\"content\" style=\"flex: 1;text-align: left;word-wrap: break-word;padding: 0 6px;width: 210px;\">{{content}}</div><div style='width: 40px;' class='label label-green'>{{status}}</div></li>", {
+                                        index: ele.Index,
+                                        content: ele.TaskInfo,
+                                        status: ele.Status
+                                    })
+                                    $('#task-view-items').find('ul').append(liTemp);
+                                });
+                            } else {
+                                console.log(response.Message);
+                                //layer.msg('更新失败', {icon: 2});
+                            }
+                        },
+                        error: function () {
+                            //layer.msg('网络或服务器异常', {icon: 2});
                         }
                     })
-                    e.returnValue=false;
-                    return false;
-                }
-            })
-
-            $.ajax({
-                url: window.app.apiUrl + "Account",
-                type: "post",
-                dataType: "json",
-                contextType: "application/json",
-                beforeSend: window.app.beforeSend,
-                data: {
-                    "act": "getTeamMates",
-                    "str": JSON.stringify({}),
-                },
-                success: function (response) {
-                    if (response.Success) {
-                        var teamMember=$("#team-members");
-                        $.each(response.Data,function(i,ele){
-                            var memberOpt=mus.render("<option value='{{Id}}'>{{Name}}</option>>",ele)
-                            teamMember.append(memberOpt);
-                        });
-                        form.render();
-                    }
-                },
-                error: function () {
-                    layer.msg('网络或服务器异常', {icon: 2});
                 }
             })
             $def.resolve();
