@@ -15,9 +15,6 @@ define(["jquery", "mustache"], function ($, mus) {
             this.regLink = "#link-reg";
             this.accountInput = "#input-account";
             this.passwordInput = "#input-password";
-            this.mini = "#tool-dragBar #mini";
-            this.menu = "#tool-dragBar #menu";
-            this.close = "#tool-dragBar #close";
         },
         loadHtml: function () {
             var $def = $.Deferred();
@@ -54,9 +51,11 @@ define(["jquery", "mustache"], function ($, mus) {
                         if (response.Success) {
                             context.unstall();
                             window.app.userToken = response.Data.token;
+                            window.app.userInfo.loginId=response.Data.loginId;
+                            window.app.userInfo.name=response.Data.name=="未设置"?response.Data.loginId:response.Data.name;
+                            window.app.userInfo.accountId=response.Data.accountid;
                             window.app.router.toTask();
                         } else {
-
                             alert(response.Message);
                         }
                         thisBtn.text("登录");
@@ -75,15 +74,9 @@ define(["jquery", "mustache"], function ($, mus) {
                 context.unstall();
                 window.app.router.toRegister();
             });
-            $(context.close).click(function (e) {
-                e.preventDefault();
-                nw.Window.get().close();
-            });
-            $(context.menu).hide();
-            $(context.mini).click(function (e) {
-                e.preventDefault();
-                nw.Window.get().minimize();
-            });
+
+            $("#content-toolbar #menu").hide();
+
 
             $def.resolve();
             return $def.promise();
@@ -96,7 +89,6 @@ define(["jquery", "mustache"], function ($, mus) {
             $(context.loginBtn).unbind();
             $(context.regLink).unbind();
         }
-
     }
 
     return new LoginPage();

@@ -5,7 +5,7 @@
             <li id="func-review" class="tab" data-target="review-team">查看 view</li>
         </ul>
     </div>
-    <div id="today-task" class="tabContent" style="display: none;">
+    <div id="today-task" class="tabContent">
         <div id="summary-container">
             <div class="task-title-line">
                 <span class="title">双升总结</span>
@@ -49,7 +49,7 @@
             <span id="nowDate"></span>
         </div>
     </div>
-    <div id="review-team" class="tabContent" >
+    <div id="review-team" class="tabContent" style="display: none;">
        <div id="task-view-container">
            <div class="task-title-line">
                <input id="search-member" type="text" placeholder="搜索并选择成员"/>
@@ -71,5 +71,13 @@
        </div>
     </div>
 
-
+    <div id='morePanel' style="display: none">
+        <ul>
+            <li>
+                <div style="float: left;"><span style="padding: 6pt;margin: 3pt auto;font-size: 14px;display: inline-block;">时间设置</span></div>
+                <div style="float: left;"> <input type="text" id="startTime" style="width: 40px"/> - <input type="text" id="endTime" style="width: 40px"/></div>
+                <div style="float: right;"><span id="timeSetBtn" class="btn" style="display: inline-block">确定</span></div>
+            </li>
+        </ul>
+    </div>
 </div>

@@ -29,7 +29,10 @@
        bindEvents:function(context){
            context=context||this;
            var $def=$.Deferred();
-           $(context.regBtn).bind("click",function(e){
+           var regFunc=function(){
+               var thisBtn=$(this);
+               thisBtn.text("注册中···");
+               thisBtn.unbind();
                var account=$(context.accountInput).val();
                var pwd=$(context.passwordInput).val();
                var pwdConfirm=$(context.passwordConfirmInput).val();
@@ -49,22 +52,27 @@
                        })
                    },
                    success:function(response){
-                    if(response.Success){
-                        alert("账号创建成功，页面跳转中！");
-                        setTimeout(function(){
-                            context.unstall();
-                            window.app.router.toLogin();
-                        },3000)
-                    }else{
-                        alert("账号创建失败："+response.Messsage+"！");
-                    }
+                       if(response.Success){
+
+                           alert("账号创建成功，页面跳转中！");
+                           setTimeout(function(){
+                               context.unstall();
+                               window.app.router.toLogin();
+                           },1000)
+                       }else{
+                           alert("账号创建失败："+response.Messsage+"！");
+                       }
+                       thisBtn.text("注册");
+                       thisBtn.bind("click",regFunc);
                    },
                    error:function(){
                        alert("数据访问异常/(ㄒoㄒ)/~~");
+                       thisBtn.text("注册");
+                       thisBtn.bind("click",regFunc);
                    }
                })
-
-           });
+           }
+           $(context.regBtn).bind("click",regFunc);
            $(context.loginLink).bind("click",function(e){
                context.unstall();
                window.app.router.toLogin();

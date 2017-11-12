@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--<link type="text/css" rel="stylesheet" href="./layui/css/layui.css">-->
 <link type="text/css" rel="stylesheet" href="./css/site.css"/>
 <link type="text/css" rel="stylesheet" href="./css/font/iconfont.css">
 <link type="text/css" rel="stylesheet" href="./css/login.css"/>
 <link type="text/css" rel="stylesheet" href="./css/task.css"/>
 <link type="text/css" rel="stylesheet" href="./css/register.css"/>
-
-<!--<link type="text/css" rel="stylesheet" href="./layui/css/layui.mobile.css">-->
-<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+<link type="text/css" rel="stylesheet" href="./css/jquery.datetimepicker.css"/>
+<script type="text/javascript" src="./js/jquery.js"></script>
 <script type="text/javascript" src="./js/require.js"></script>
-<!--<script type="text/javascript" src="./layui/layui.all.js"></script>-->
-
 <head>
     <meta charset="UTF-8">
     <title>SixToDo</title>
@@ -40,12 +36,14 @@
 
         requirejs.config({
             paths:{
-                "jquery":"./js/jquery-3.2.1.min",
+                "jquery":"./js/jquery",
+                "jquery-mousewheel":"./js/jquery.mousewheel",
                 "mustache":"./js/mustache",
                 "std":"./js/std-ext",
                 "login":"./js/pages/login",
                 "task":"./js/pages/task",
                 "register":"./js/pages/register",
+                "datetime":"./js/jquery.datetimepicker.full",
             },
         });
 
@@ -60,7 +58,7 @@
                         guid += "-";
                 }
                 return guid;
-            },
+            };
                 window.showDate=function(){
                     var showDay=new Array('星期日','星期一','星期二','星期三','星期四','星期五','星期六');
                     var date = new Date();
@@ -75,15 +73,19 @@
                     }
                     var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
                     return currentdate+" "+showDay[date.getDay()];
-                },
+                };
             window.app={
                 apiUrl:"http://localhost:3808/api/",
                 userToken:"",
+                userInfo:{
+                    loginId:undefined,
+                    accountId:undefined,
+                    name:'',
+                },
                 beforeSend:function(request) {
                     request.setRequestHeader("Authorization","Basic "+window.app.userToken);
                 },
                 asyncTasks:[],
-                holdTasks:[],
                 router:{
                     toLogin:function(){
                         login.init({container:$("#main-content")});
@@ -98,8 +100,20 @@
                         reg.install();
                     }
                 }
-            }
+            };
+            var miniBtn=$("#content-toolbar #mini");
+            var menuBtn=$("#content-toolbar #menu");
+            var closeBtn=$("#content-toolbar #close");
 
+            closeBtn.click(function (e) {
+                e.preventDefault();
+                nw.Window.get().close();
+            });
+
+            miniBtn.click(function (e) {
+                e.preventDefault();
+                nw.Window.get().minimize();
+            });
             window.app.router.toLogin();
 
         })

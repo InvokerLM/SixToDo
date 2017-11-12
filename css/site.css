@@ -263,3 +263,23 @@ display: inline-block;
     background: #9ec921;
     color: white;
 }
+
+.label-orange{
+    background:darkorange ;
+    color: white;
+}
+
+.label-grey{
+    background:grey ;
+    color: white;
+}
+
+.btn{
+    background: linear-gradient(to bottom, #5ec036 0%, #9ec921 100%);
+    border-radius: 4px;
+    padding: 6pt;
+    margin:3pt auto;
+    margin-right: 3px;
+    color: white;
+    cursor: pointer;
+}

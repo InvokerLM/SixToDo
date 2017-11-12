@@ -90,7 +90,6 @@ define(["jquery", "mustache"], function ($, mus) {
             if ($(e.target).closest("div.std-dropdownListContainer").length == 0) {
                 if (!$listElement.is(":hidden")) {
                     $listElement.hide();
-                    // executeFunction($thisContrl.options.onClose, $thisContrl);
                 }
             }
         });
@@ -101,24 +100,37 @@ define(["jquery", "mustache"], function ($, mus) {
         return this.selectItems[0];
     };
 
+    DropDownList.prototype.setItem=function(item){
+        this.selectItems.splice(0,this.selectItems.length);
+        this.selectItems.push(item);
+        this.element.val(item.text).data('value',item.value);
+        var e={
+            item:{
+                text:item.text,
+                value:item.value,
+            }
+        }
+        this.options.onSelect(e);
+    }
+
 
     function Plugin(option) {
         return this.each(function () {
             var $this = $(this);
-            var data = $this.data("std.DropDownTreeList");
+            var data = $this.data("std.DropDownList");
             var options = typeof option === 'object' && option;
             if (!data) {
-                $this.data('std.DropDownTreeList', (data = new DropDownList(this, options)));
+                $this.data('std.DropDownList', (data = new DropDownList(this, options)));
                 data.initDropDownList();
             }
         });
     }
 
-    var old = $.fn.stdDropDownTreeList;
-    $.fn.stdDropDownTreeList = Plugin;
-    $.fn.stdDropDownTreeList.Constructor = DropDownList;
-    $.fn.stdDropDownTreeList.noConflict = function () {
-        $.fn.stdDropDownTreeList = old;
+    var old = $.fn.stdDropDownList;
+    $.fn.stdDropDownList = Plugin;
+    $.fn.stdDropDownList.Constructor = DropDownList;
+    $.fn.stdDropDownList.noConflict = function () {
+        $.fn.stdDropDownList = old;
         return this;
     };
 
