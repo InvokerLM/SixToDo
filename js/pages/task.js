@@ -222,8 +222,8 @@ define(["jquery", "mustache", "std","datetime"], function ($, mus, std,timepicke
             });
 
             $(document).click(function (e) {
-                if ($(e.target).closest("#morePanel").length == 0) {
-                    if (!$("#morePanel").is(":visible")) {
+                if ($(e.target).closest("#morePanel").length == 0&&!$(e.target).hasClass('icon-gengduo')) {
+                    if ($("#morePanel").is(":visible")) {
                         $("#morePanel").hide();
                     }
                 }
